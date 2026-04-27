@@ -202,3 +202,7 @@ cython_debug/
 # Temporary file for partial code execution
 tempCodeRunnerFile.py
 tempCodeRunnerFile.py
+
+# Project-specific
+.gradle/
+tp-cnp.pdf
