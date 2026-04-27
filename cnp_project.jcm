@@ -1,0 +1,128 @@
+// Contract Net Protocol – Auto-generated JaCaMo project
+// Configuration: n=10 initiators, m=10 participants, i=5 contracts/initiator
+// Threshold range: [80, 150]
+// Theoretical max contracts : 50
+// Theoretical max value     : 10000  (service_value=200)
+
+mas cnp {
+
+    // === 10 initiator(s), each runs 5 CNPs in parallel ===
+    agent initiator1 : initiator.asl {
+        join: cnp_workspace
+        focus: cnp_workspace.metrics_board
+        beliefs: agent_id(1), num_contracts(5), num_participants(10), price_threshold(126)
+    }
+    agent initiator2 : initiator.asl {
+        join: cnp_workspace
+        focus: cnp_workspace.metrics_board
+        beliefs: agent_id(2), num_contracts(5), num_participants(10), price_threshold(142)
+    }
+    agent initiator3 : initiator.asl {
+        join: cnp_workspace
+        focus: cnp_workspace.metrics_board
+        beliefs: agent_id(3), num_contracts(5), num_participants(10), price_threshold(107)
+    }
+    agent initiator4 : initiator.asl {
+        join: cnp_workspace
+        focus: cnp_workspace.metrics_board
+        beliefs: agent_id(4), num_contracts(5), num_participants(10), price_threshold(97)
+    }
+    agent initiator5 : initiator.asl {
+        join: cnp_workspace
+        focus: cnp_workspace.metrics_board
+        beliefs: agent_id(5), num_contracts(5), num_participants(10), price_threshold(86)
+    }
+    agent initiator6 : initiator.asl {
+        join: cnp_workspace
+        focus: cnp_workspace.metrics_board
+        beliefs: agent_id(6), num_contracts(5), num_participants(10), price_threshold(143)
+    }
+    agent initiator7 : initiator.asl {
+        join: cnp_workspace
+        focus: cnp_workspace.metrics_board
+        beliefs: agent_id(7), num_contracts(5), num_participants(10), price_threshold(80)
+    }
+    agent initiator8 : initiator.asl {
+        join: cnp_workspace
+        focus: cnp_workspace.metrics_board
+        beliefs: agent_id(8), num_contracts(5), num_participants(10), price_threshold(147)
+    }
+    agent initiator9 : initiator.asl {
+        join: cnp_workspace
+        focus: cnp_workspace.metrics_board
+        beliefs: agent_id(9), num_contracts(5), num_participants(10), price_threshold(102)
+    }
+    agent initiator10 : initiator.asl {
+        join: cnp_workspace
+        focus: cnp_workspace.metrics_board
+        beliefs: agent_id(10), num_contracts(5), num_participants(10), price_threshold(97)
+    }
+
+    // === 10 participant(s) across 3 strategies ===
+    // Strategy 1: Random price variation (4 agents)
+    agent participant1 : participant_strategy1.asl {
+        join: cnp_workspace
+        focus: cnp_workspace.metrics_board
+        beliefs: agent_id(1), base_price(100)
+    }
+    agent participant2 : participant_strategy1.asl {
+        join: cnp_workspace
+        focus: cnp_workspace.metrics_board
+        beliefs: agent_id(2), base_price(120)
+    }
+    agent participant3 : participant_strategy1.asl {
+        join: cnp_workspace
+        focus: cnp_workspace.metrics_board
+        beliefs: agent_id(3), base_price(90)
+    }
+    agent participant4 : participant_strategy1.asl {
+        join: cnp_workspace
+        focus: cnp_workspace.metrics_board
+        beliefs: agent_id(4), base_price(110)
+    }
+    // Strategy 2: Adaptive discount (3 agents)
+    agent participant5 : participant_strategy2.asl {
+        join: cnp_workspace
+        focus: cnp_workspace.metrics_board
+        beliefs: agent_id(5), base_price(115), discount(5)
+    }
+    agent participant6 : participant_strategy2.asl {
+        join: cnp_workspace
+        focus: cnp_workspace.metrics_board
+        beliefs: agent_id(6), base_price(125), discount(8)
+    }
+    agent participant7 : participant_strategy2.asl {
+        join: cnp_workspace
+        focus: cnp_workspace.metrics_board
+        beliefs: agent_id(7), base_price(100), discount(3)
+    }
+    // Strategy 3: Fixed price (3 agents)
+    agent participant8 : participant_strategy3.asl {
+        join: cnp_workspace
+        focus: cnp_workspace.metrics_board
+        beliefs: agent_id(8), fixed_price(95)
+    }
+    agent participant9 : participant_strategy3.asl {
+        join: cnp_workspace
+        focus: cnp_workspace.metrics_board
+        beliefs: agent_id(9), fixed_price(105)
+    }
+    agent participant10 : participant_strategy3.asl {
+        join: cnp_workspace
+        focus: cnp_workspace.metrics_board
+        beliefs: agent_id(10), fixed_price(100)
+    }
+
+    // === Control agent: triggers final report ===
+    agent report_controller : report_controller.asl {
+        join: cnp_workspace
+        focus: cnp_workspace.metrics_board
+        beliefs: num_initiators(10), total_contracts(50)
+    }
+
+    workspace cnp_workspace {
+        artifact metrics_board : example.MetricsBoard(10, 10, 5, "1:1;2:1;3:1;4:1;5:2;6:2;7:2;8:3;9:3;10:3")
+    }
+
+    asl-path: "src/agt"
+}
